@@ -41,11 +41,9 @@ class TrackerTestCase(APITestCase):
                 "user": self.user.pk, "place": "Двор", "sign_pleasant_habit":True,
                 "time_success":timedelta(seconds=120), "action":"Присесть 100",
                 "periodicity":timedelta(seconds=120),
-                "reward":"Пирог",
                 "time_complete":timedelta(seconds=110)
             }
         )
-        print(response.text)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(data["place"], "Двор")
@@ -58,7 +56,6 @@ class TrackerTestCase(APITestCase):
                 "password": "1234",
             }
         )
-        print(response.text)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 

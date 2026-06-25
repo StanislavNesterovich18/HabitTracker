@@ -2,7 +2,6 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 
 from tracker.models import HabitTracker
-from tracker.paginator import Pagination
 from tracker.serialisers import HabitTrackerCreateSerializer
 from users.permissions import IsOwner
 
@@ -10,11 +9,9 @@ from users.permissions import IsOwner
 class HabitTrackerListApiViews(generics.ListAPIView):
     queryset = HabitTracker.objects.filter(is_public=True)
     serializer_class = HabitTrackerCreateSerializer
-    pagination_class = Pagination
 
 class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitTrackerCreateSerializer
-    pagination_class = Pagination
 
     def get_queryset(self):
         queryset = HabitTracker.objects.filter(user=self.request.user)

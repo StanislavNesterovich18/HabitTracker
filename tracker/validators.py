@@ -34,8 +34,9 @@ class ValidatorReward:
 
     def __call__(self, attr):
         sign_pleasant_habit = attr.get("sign_pleasant_habit")
+        related_habit = attr.get("related_habit")
         reward = attr.get("reward")
-        if sign_pleasant_habit and not reward:
+        if sign_pleasant_habit and (reward or related_habit):
            raise ValidationError("У приятной привычки не может быть вознаграждения или связанной привычки.")
 
 
